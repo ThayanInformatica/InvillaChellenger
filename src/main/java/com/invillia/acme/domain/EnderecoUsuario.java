@@ -43,8 +43,4 @@ public class EnderecoUsuario {
     @Column(name = "numero")
     private Integer numero;
 
-    @OneToOne
-    @JoinColumn(name = "tb_usuario")
-    private Usuario usuario;
-
 }

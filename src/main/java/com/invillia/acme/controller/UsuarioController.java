@@ -6,8 +6,8 @@ import com.invillia.acme.domain.dto.UsuarioDTO;
 import com.invillia.acme.mapper.UsuarioMapper;
 import com.invillia.acme.repository.UsuarioRepository;
 import com.invillia.acme.service.UsuarioService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,19 +30,21 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) { ;
+    public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
 
     @PostMapping
+    @ApiOperation(value = "Adiciona um usuário")
     public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody @Valid Usuario usuario) throws IOException {
 
         Usuario usuarios = usuarioService.cadastrarOuAlterarUsuario(usuario);
 
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuarios);
 
-        return new ResponseEntity<>(usuarioDTO, HttpStatus.CREATED);
+        return ResponseEntity.ok(usuarioDTO);
+
     }
 
 

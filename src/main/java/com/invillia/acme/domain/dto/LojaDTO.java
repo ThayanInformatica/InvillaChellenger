@@ -22,7 +22,7 @@ public class LojaDTO implements Serializable {
     private String nomeLoja;
 
     @ApiModelProperty(notes = "Nome da loja")
-    private UsuarioDTO usuarioDTO;
+    private UsuarioDTO usuario;
 
     @ApiModelProperty(notes = "Endereco da loja")
     private EnderecoLoja enderecoLoja;

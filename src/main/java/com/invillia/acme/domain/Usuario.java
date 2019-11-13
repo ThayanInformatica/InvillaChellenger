@@ -38,10 +38,8 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 
-
     @OneToOne
-    @JoinColumn(name = "tb_endereco_usuario")
+    @JoinColumn(name = "id_endereco_usuario")
     private EnderecoUsuario enderecoUsuario;
-
 }
 

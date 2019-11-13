@@ -1,9 +1,11 @@
 package com.invillia.acme.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,29 +22,20 @@ public class Pedido {
     private Long id;
 
     @Column(name = "status")
-    private Boolean status;
+    private Boolean status = false;
 
     @Column(name = "dt_confirmacao")
-    private LocalDate dataConfirmacao;
+    private Date dataConfirmacao;
 
     @ManyToOne
-    @JoinColumn(name = "tb_usuario")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "tb_loja")
+    @JoinColumn(name = "id_loja")
     private Loja loja;
 
-    @OneToOne
-    @JoinColumn(name = "tb_endereco_usuario")
-    private EnderecoUsuario enderecoUsuario;
-
-    @OneToOne
-    @JoinColumn(name = "tb_item_pedido")
-    private ItemPedido itemPedido;
-
-    @OneToOne
-    @JoinColumn(name = "tb_pagamento")
-    private PagamentoPedido pagamentoPedido;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
+    private List<ItensPedido> itensPedido;
 
 }

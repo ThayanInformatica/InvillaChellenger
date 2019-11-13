@@ -17,7 +17,7 @@ public class EnderecoLoja {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_endereco")
+    @Column(name = "id_endereco_loja")
     private Long id;
 
     @Column(name = "cep")
@@ -42,9 +42,5 @@ public class EnderecoLoja {
 
     @Column(name = "numero")
     private Integer numero;
-
-    @OneToOne
-    @JoinColumn(name = "tb_loja")
-    private Loja loja;
 
 }

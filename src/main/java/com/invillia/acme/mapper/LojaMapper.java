@@ -20,7 +20,7 @@ public class LojaMapper {
         usuarioDTO.setEnderecoUsuario(loja.getUsuario().getEnderecoUsuario());
 
         lojaDTO.setNomeLoja(loja.getNomeLoja());
-        lojaDTO.setUsuarioDTO(usuarioDTO);
+        lojaDTO.setUsuario(usuarioDTO);
         lojaDTO.setEnderecoLoja(loja.getEnderecoLoja());
 
         return lojaDTO;

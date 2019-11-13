@@ -3,7 +3,6 @@ package com.invillia.acme.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -11,25 +10,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_pagamento")
-public class PagamentoPedido {
-
+@Table(name = "tb_reembolso")
+public class ReembolsoPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pagamento")
+    @Column(name = "id_reembolso")
     private Long id;
 
-    @Column(name = "status")
-    private Boolean status;
-
-    @Column(name = "numero_cartao")
-    private String numeroCartao;
-
-    @Column(name = "dt_pagamento")
-    private Date dataPagamento;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tb_item_pedido")
+    private ItensPedido itensPedido;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
-
 }

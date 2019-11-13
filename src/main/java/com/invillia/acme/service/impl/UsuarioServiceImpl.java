@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.io.IOException;
 
 @Service
@@ -37,14 +38,16 @@ public class UsuarioServiceImpl implements UsuarioService {
             Usuario usuarioid = usuarioRepository.findAllById(usuario.getId());
         }
 
-        if (usuario.getEnderecoUsuario()!= null) {
+        this.usuarioRepository.save(usuario);
 
+        if (usuario.getEnderecoUsuario() != null) {
             this.enderecoUsuarioRepository.save(usuario.getEnderecoUsuario());
         }
+        this.usuarioRepository.save(usuario);
 
-        Usuario usuarioCadastrado = usuarioRepository.save(usuario);
-
-        return usuarioCadastrado;
+        return usuario;
     }
+
+
 
 }
